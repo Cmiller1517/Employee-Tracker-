@@ -92,7 +92,7 @@ function allEmployees() {
 )};
 
 const addDepartment = async () => {
-//   prompts questions to add
+//   prompts questions for the new dept
     await inquirer.prompt (
     {
         type: 'input',
@@ -100,7 +100,7 @@ const addDepartment = async () => {
         message: 'What is the name of the new Department you would like to add?'
 
     })
-
+//   allows you to add to the seeds
     .then(function(deptName){
       db.query("INSERT INTO department (name) VALUES (?)", [deptName.newDept], (err, res) => {
         if (err) throw (err);
@@ -108,7 +108,7 @@ const addDepartment = async () => {
 
     })})
 };
-//   prompts questions to add
+//   prompts questions to add new role
 const addRole = async () => {
   await inquirer.prompt ([
     {
@@ -129,7 +129,7 @@ const addRole = async () => {
         message: 'What is the id of the department the new role belongs to?'
     }]
     )
-
+// adss new role into seeds
     .then(function(roleName){
       db.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [roleName.newRole, roleName.newSalary, roleName.newRoleDept] , (err, res) => {
         if (err) throw (err);
@@ -137,7 +137,7 @@ const addRole = async () => {
 
 })})
 };
-
+//   prompts questions to add new employee 
 const addEmployee = async () => {
   await inquirer.prompt([
     {
@@ -162,6 +162,7 @@ const addEmployee = async () => {
     }]
   )
 
+//   add new employee to seeds
   .then(function(employeeName){
     db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [employeeName.newFirstName, employeeName.newLastName, employeeName.newRoleID, employeeName.managerID] , (err, res) => {
       if (err) throw (err);
@@ -170,7 +171,7 @@ const addEmployee = async () => {
     })})
   };
 
- 
+ //   prompts questions to update an employee
 const updateEmployee = async () => {
   await inquirer.prompt([
       {
