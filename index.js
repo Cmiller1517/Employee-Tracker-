@@ -1,4 +1,4 @@
-require("console.table");
+
 const inquirer = require("inquirer");
 const db = require("./config/connection");
 
@@ -71,7 +71,7 @@ function allDepartments() {
   db.query("SELECT * FROM department", (err, res) => {
     if (err) throw (err);
     console.table(res);
-  
+    questions();
   }
 )};
 // selects from a list of roles in Seeds
@@ -79,7 +79,7 @@ function allRoles() {
   db.query("SELECT * FROM role", (err, res) => {
     if (err) throw (err);
     console.table(res);
-  
+    questions()
   }
 )};
 // selects from a list of roles in Seeds
@@ -87,6 +87,7 @@ function allEmployees() {
   db.query("SELECT employee.id, employee.first_name, employee.last_name, employee.role_id, employee.manager_id, role.title, role.salary, role.id, department.id FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id", (err, res) => {
     if (err) throw (err);
     console.table(res);
+    questions()
   
   }
 )};
@@ -105,6 +106,7 @@ const addDepartment = async () => {
       db.query("INSERT INTO department (name) VALUES (?)", [deptName.newDept], (err, res) => {
         if (err) throw (err);
         console.table(res);
+        questions();
 
     })})
 };
@@ -134,6 +136,7 @@ const addRole = async () => {
       db.query("INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)", [roleName.newRole, roleName.newSalary, roleName.newRoleDept] , (err, res) => {
         if (err) throw (err);
         console.table(res);
+        questions();
 
 })})
 };
@@ -167,6 +170,7 @@ const addEmployee = async () => {
     db.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [employeeName.newFirstName, employeeName.newLastName, employeeName.newRoleID, employeeName.managerID] , (err, res) => {
       if (err) throw (err);
       console.table(res);
+      questions();
 
     })})
   };
@@ -191,6 +195,7 @@ const updateEmployee = async () => {
       db.query("UPDATE employee SET role_id=? WHERE first_name= ?", [update.employeeUpdate, update.roleUpdate], (err, res) => {
         if (err) throw (err);
         console.table(res);
+        questions();
 
     })})
 
