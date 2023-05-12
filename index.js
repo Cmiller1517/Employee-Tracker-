@@ -71,7 +71,7 @@ function allDepartments() {
   db.query("SELECT * FROM department", (err, res) => {
     if (err) throw (err);
     console.table(res);
-  
+    questions();
   }
 )};
 // selects from a list of roles in Seeds

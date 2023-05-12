@@ -14,7 +14,7 @@ VALUES ("Manager", 95000.00, 01),
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES ("Michael", "Scott", 01, 10),
-       ("Dwight Schrute", "Pinkman", 02, 14),
+       ("Dwight", "Shrute", 02, 14),
        ("Jim", "Halpert", 03, 19),
        ("Pam", "Beesly", 04, 21),
        ("Kevin", "Malone", 05, 25);
